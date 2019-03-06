@@ -1,10 +1,11 @@
+// create globals
 var database = firebase.database();
-
 var sample = {
   firstName: 'yet',
   lastName: 'another value'
 };
 
+// create the firebase button
 function createElements(){
   var firebaseButton = $('<button>');
   firebaseButton.html('firebase!');
@@ -13,6 +14,7 @@ function createElements(){
   $('#firebase-card').append(firebaseButton);
 }
 
+// when firbase button is clicked push the sample object
 function setUpClickFirebase() {
   $(document).on('click', '#firebase-button', function () {
     console.log('fired');
@@ -20,6 +22,7 @@ function setUpClickFirebase() {
   });
 }
 
+// displays the contents of the database in card-body
 function setUpFireBaseOnValue() {
   database.ref().on('value', function (snapshot) {
     $('#firebase-card-text').html(JSON.stringify(snapshot.val()))
@@ -28,6 +31,7 @@ function setUpFireBaseOnValue() {
   })
 }
 
+// what happens every interval event
 function logCurrentTime() {
   var date = new Date();
   var minutes = date.getMinutes();
@@ -37,15 +41,15 @@ function logCurrentTime() {
   // page here with proper time
 }
 
+// start the 1 second interval timer
 function startTimer() {
   setInterval(function(){
     logCurrentTime();
   }, 1000);
 };
 
+// when document is ready call my functions in proper order
 $(document).ready(function () {
-  // organize your library of functions that do specific things
-  // and then here call them in the proper order
   createElements();
   setUpClickFirebase();
   setUpFireBaseOnValue();
