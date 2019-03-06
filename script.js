@@ -22,7 +22,8 @@ function setUpClickFirebase() {
   });
 }
 
-// displays the contents of the database in card-body
+// create and event handler that displays the contents of the database
+// in card - body initially and on change
 function setUpFireBaseOnValue() {
   database.ref().on('value', function (snapshot) {
     $('#firebase-card-text').html(JSON.stringify(snapshot.val()))
